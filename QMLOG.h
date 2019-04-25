@@ -53,25 +53,6 @@ private:
  class:		QM逻辑表达式
  function:	储存最简表达式
 
-public:
-	QMLOG(int arr[]);  
-	QMLOG();
-	~QMLOG();
-	void GetIOList();						得到输入输出表
-	void Consolidation();					合并式子
-	void SelectLessItem();					列表法选择最少乘积项
-	void AddRemainItem();					增加剩余项
-	QMLOG& Put_Item(vector<int> Min_Item);	放入待化简式
-	vector<int>& Get_Sinplest();			得到最简式
-	vector<int>Push_Min_Item();				输出储存的最小项
-	vector<QM_CONSOLIDATION> Push_Consolidation();	合并表
-private:
-	vector<int>* PMin_Item;//最小项
-	vector<int>* PCon_Min_Item;//结果
-	
-	vector<QM_CONSOLIDATION>* PConsolidation_Table;//合并表
-	vector<QM_CONSOLIDATION>* PProduct_Table;//乘积表
-
 ********************************************************************/
 class QMLOG
 {

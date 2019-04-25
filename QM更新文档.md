@@ -6,8 +6,6 @@ QM逻辑化简法更新文档
 </center>
 </div>
 
-
-
 # 流程
 
     1、将最小项转化成二进制编码表
@@ -23,130 +21,170 @@ QM逻辑化简法更新文档
 
 ├──`QM_CONSOLIDATION（合并项）`
 
-│        │        |公有成员|
+│        │        |公有成员|
 
-│        ├──`QM_CONSOLIDATION(int n);`
+│        ├──`QM_CONSOLIDATION(int n);`
 
-│        │        └──构造函数，并会按照参数 n 确定储存的位数
+│        │        └──构造函数，并会按照参数 n 确定储存的位数
 
-│        ├──`QM_CONSOLIDATION(int n, int finger);`
+│        ├──`QM_CONSOLIDATION(int n, int finger);`
 
-│        │        └──构造函数，按照参数 finger 确定储存的位数
+│        │        └──构造函数，按照参数 finger 确定储存的位数
 
-│        ├──`~QM_CONSOLIDATION();`
+│        ├──`~QM_CONSOLIDATION();`
 
-│        │        └──析构函数
+│        │        └──析构函数
 
-│        ├──`const vector<int>& PopNum();`
+│        ├──`const vector<int>& PopNum();`
 
-│        │        └──输出储存的序号数组（向量）
+│        │        └──输出储存的序号数组（向量）
 
-│        ├──`const vector<int>& PopBit();`
+│        ├──`const vector<int>& PopBit();`
 
-│        │        └──输出储存的二进制数组（向量）
+│        │        └──输出储存的二进制数组（向量）
 
-│        ├──`int  PopIndex();`
+│        ├──`int  PopIndex();`
 
-│        │        └──输出 index 标识
+│        │        └──输出 index 标识
 
-│        ├──`void PushIndex(int num);`
+│        ├──`void PushIndex(int num);`
 
-│        │        └──输入 index 标识
+│        │        └──输入 index 标识
 
-│        ├──`bool Merge(QM_CONSOLIDATION& right);`
+│        ├──`bool Merge(QM_CONSOLIDATION& right);`
 
-│        │        └──与另一个合并项合并，成功返回true，失败返回false
+│        │        └──与另一个合并项合并，成功返回true，失败返回false
 
-│        ├──`bool operator +=(QM_CONSOLIDATION& right);`
+│        ├──`bool operator +=(QM_CONSOLIDATION& right);`
 
-│        │        └──重载 += 操作符，与另一个合并项合并
+│        │        └──重载 += 操作符，与另一个合并项合并
 
-│        ├──`bool operator ==(QM_CONSOLIDATION& right);`
+│        ├──`bool operator ==(QM_CONSOLIDATION& right);`
 
-│        │        ├──重载  == 操作符，与另一个合并项比较，相同返回false，
+│        │        ├──重载  == 操作符，与另一个合并项比较，相同返回false，
 
-│        │        └── 不同返回false
+│        │        └── 不同返回false
 
-│        ├──`friend ostream& operator <<(ostream& out, QM_CONSOLIDATION `│        │      `me);`
+│        ├──`friend ostream& operator <<(ostream& out, QM_CONSOLIDATION `│        │                `me);`
 
-│        │        └──重载 ostream 中的 << 操作符，输出内容 
+│        │        └──重载 ostream 中的 << 操作符，输出内容 
 
-│        │        |私有成员|
+│        │        |私有成员|
 
-│        ├──`int diff(QM_CONSOLIDATION& right);`
+│        ├──`int diff(QM_CONSOLIDATION& right);`
 
-│        │        └──比较合并项，仅有一位不同时输出该位的位置，否则输出-1
+│        │        └──比较合并项，仅有一位不同时输出该位的位置，否则输出-1
 
-│        ├──`void SetBit();`
+│        ├──`void SetBit();`
 
-│        ├──`int index=-1;`
+│        │        └──设置位向量
 
-│        ├──`int finger;`
+│        ├──`int index=-1;`
 
-│        ├──`vector<int> num;`
+│        │        └──标识，默认值为-1，即没有标识
 
-│        └──`vector<int> bit;`
+│        ├──`int finger;`
+
+│        │        └──位数
+
+│        ├──`vector<int> num;`
+
+│        │        └──序号向量
+
+│        └──`vector<int> bit;`
+
+│                  └──位向量
 
 └──`QMLOG`
 
-         ├──`QMLOG(int arr[], int n);`
+|        ├──`QMLOG(int arr[], int n);`
 
-         ├──`QMLOG(vector<int>& vect);`
+│        |        └── 构造函数，传入c数组
 
-         ├──`QMLOG(QMLOG& copy);`
+|        ├──`QMLOG(vector<int>& vect);` 
 
-         ├──`QMLOG();`
+│        |        └──构造函数，传入vector向量
 
-         ├──`~QMLOG();`
+|        ├──`QMLOG(QMLOG& copy);`
 
-         ├──`QMLOG& PutItem(vector<int>& Min_Item);`
+│        |        └──拷贝构造函数
 
-         ├──`vector<int>& GetSinplest();`
+|        ├──`QMLOG();`
 
-         ├──`const int Size() ;`
+│        |        └──默认空构造函数
 
-         ├──`const vector<int>& PopMinItem() ;`
+│        ├──`~QMLOG();`
 
-         ├──`const vector<QM_CONSOLIDATION>& PopConsolidationTable();`
+|        │        └──析构函数
 
-         ├──`const vector<QM_CONSOLIDATION>& PopProductTable() ;`
+|        ├──`QMLOG& PutItem(vector<int>& Min_Item);`
 
-         ├──`void operator =(QMLOG& copy);`
+│        |        └──
 
-         ├──`friend ostream& operator <<(ostream& out,QMLOG me);`
+|        ├──`vector<int>& GetSinplest();`
 
-         │
+│        |        └──
 
-         ├──`void InitConList();`
+|        ├──`const int Size() ;`  
 
-         ├──`void Consolidation();`
+│        |        └──
 
-         ├──`void InitProductTable();`
+|        ├──`const vector<int>& PopMinItem() ;`   
 
-         ├──`void SelectLessItem();`
+│        |        └──
 
-         ├──`void AddRemainItem();`
+|        ├──`const vector<QM_CONSOLIDATION>& PopConsolidationTable();`
 
-         ├──`int size;`
+│        |        └──
 
-         ├──`vector<int> MinItem;`
+|        ├──`const vector<QM_CONSOLIDATION>& PopProductTable() ;`  
 
-         ├──`vector<int> ConMinItem;`
+│        |        └──
 
-         ├──`vector<QM_CONSOLIDATION> ConsolidationTable;`
+|        ├──`void operator =(QMLOG& copy);`   
 
-         ├──`vector<QM_CONSOLIDATION> ProductTable;`
+│        |        └──
 
+|        ├──`friend ostream& operator <<(ostream& out,QMLOG me);`
 
+│        |        └──
 
+|        ├──`void InitConList();`
 
+│        |        └──
 
+|        ├──`void Consolidation();`   
 
+│        |        └──
 
+|        ├──`void InitProductTable();`
 
+│        |        └──
 
+|        ├──`void SelectLessItem();`
 
+│        |        └──
 
-```
-└
-```
+|        ├──`void AddRemainItem();`
+
+│        |        └──
+
+|        ├──`int size;`
+
+│        |        └──
+
+|        ├──`vector<int> MinItem;`
+
+│        |        └──
+
+|        ├──`vector<int> ConMinItem;`
+
+|        │        └──
+
+|        ├──`vector<QM_CONSOLIDATION> ConsolidationTable;`
+
+│        |        └──
+
+|        ├──`vector<QM_CONSOLIDATION> ProductTable;`
+
+└───┴───┴──
