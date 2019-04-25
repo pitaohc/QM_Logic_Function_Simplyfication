@@ -1,0 +1,2 @@
+# QM_Logic_Function_Simplyfication
+逻辑电路QM化简法
