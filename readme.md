@@ -23,10 +23,6 @@ QM逻辑化简法更新文档
 
 │        │        |**公有成员**|
 
-│        ├──`QM_CONSOLIDATION();`
-
-│        │        └──默认构造函数
-
 │        ├──`QM_CONSOLIDATION(int n);`
 
 │        │        └──构造函数，并会按照参数 **n** 确定储存的位数
@@ -198,7 +194,3 @@ QM逻辑化简法更新文档
 1、QMLOG对象初始化合并表函数
 
 2、QMLOG对象中加入私有成员声明，储存字符串结果
-
-3、QM_CONSOLIDATION类复制构造函数
-
-4、QM_CONSOLIDATION类assign函数

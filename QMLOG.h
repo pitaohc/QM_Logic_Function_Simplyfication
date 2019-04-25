@@ -28,6 +28,7 @@ function:存放合并项信息
 class QM_CONSOLIDATION
 {
 public:
+	QM_CONSOLIDATION() {};
 	QM_CONSOLIDATION(int n);			//构造函数，动态位
 	QM_CONSOLIDATION(int n, int finger);//构造函数，固定位
 	~QM_CONSOLIDATION();				//析构函数
@@ -38,7 +39,8 @@ public:
 	bool Merge(QM_CONSOLIDATION& right);		//合并合并项
 	bool operator +=(QM_CONSOLIDATION& right);	//合并合并项 +=操作符重载
 	bool operator ==(QM_CONSOLIDATION& right);  //比较两个合并项是否相等
-	friend ostream& operator <<(ostream& out, QM_CONSOLIDATION me);
+	QM_CONSOLIDATION& operator =(QM_CONSOLIDATION& copy);//赋值构造函数
+	friend ostream& operator <<(ostream& out, QM_CONSOLIDATION& me);
 
 private:
 	int diff(QM_CONSOLIDATION& right);//合并项比较
@@ -76,7 +78,7 @@ public:
 	
 	//操作符重载函数
 	void operator =(QMLOG& copy);//复制构造函数
-	friend ostream& operator <<(ostream& out,QMLOG me);
+	friend ostream& operator <<(ostream& out,QMLOG & me);
 private:
 	//vector<int>* PMin_Item;//最小项
 	//vector<int>* PCon_Min_Item;//结果
@@ -90,7 +92,7 @@ private:
 	void SelectLessItem();		//列表法选择最少乘积项
 	void AddRemainItem();		//增加剩余项
 	//私有成员变量
-	int size;
+	int size;									//最小项数量
 	vector<int> MinItem;						//最小项
 	vector<int> ConMinItem;						//结果
 	vector<QM_CONSOLIDATION> ConsolidationTable;//合并表

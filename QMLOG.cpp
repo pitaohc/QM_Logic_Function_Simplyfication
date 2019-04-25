@@ -106,8 +106,18 @@ bool QM_CONSOLIDATION::operator==(QM_CONSOLIDATION& right)
 	else 
 		return false;
 }
+
+QM_CONSOLIDATION& QM_CONSOLIDATION::operator=(QM_CONSOLIDATION& copy)
+{
+	index = copy.index;
+	finger = copy.finger;
+	num = copy.num;
+	bit = copy.bit;
+	return *this;
+}
+
 //打印 重载<<
-ostream& operator<<(ostream& out, QM_CONSOLIDATION me)
+ostream& operator<<(ostream& out, QM_CONSOLIDATION &me)
 {
 	cout << me.PopIndex();
 	cout << " |";
@@ -126,8 +136,8 @@ QMLOG::QMLOG(int arr[], int n)
 }
 
 QMLOG::QMLOG( vector<int> & vect)
-	:MinItem(vect)
 {
+	PutItem(vect);
 	sort(MinItem.begin(), MinItem.end());
 }
 
@@ -155,28 +165,22 @@ void QMLOG::operator=(QMLOG& copy)
 
 void QMLOG::InitConList()
 {
-
+	int max = MinItem[size-1];
+	int finger = 0;
+	while (max>0)
+	{
+		max /= 2;
+		finger++;
+	}
+	ConsolidationTable.resize(size);
+	for (int i = 0; i < size; i++)
+	{
+		QM_CONSOLIDATION temp(MinItem[i], finger);
+		ConsolidationTable[i] = temp;
+	}
 }
 
-void QMLOG::Consolidation()
-{
 
-}
-
-void QMLOG::InitProductTable()
-{
-
-}
-
-void QMLOG::SelectLessItem()
-{
-
-}
-
-void QMLOG::AddRemainItem()
-{
-
-}
 
 //
 QMLOG& QMLOG::PutItem(vector<int>& vect)
@@ -188,18 +192,21 @@ QMLOG& QMLOG::PutItem(vector<int>& vect)
 
 vector<int>& QMLOG::GetSinplest()
 {
-	InitConList();
-	Consolidation();
-	InitProductTable();
-	SelectLessItem();
-	AddRemainItem();
+	if (ConMinItem.empty())
+	{
+		InitConList();
+		Consolidation();
+		InitProductTable();
+		SelectLessItem();
+		AddRemainItem();
+	}
+
 	return ConMinItem;
 }
 
 
 
-
-ostream& operator<<(ostream& out, QMLOG me)
+ostream& operator<<(ostream& out, QMLOG & me)
 {
 	int size = me.Size();
 	vector<int> MinItem = me.PopMinItem();			//最小项
@@ -244,5 +251,5 @@ ostream& operator<<(ostream& out, QMLOG me)
 			}
 		});
 	return out;
-	// TODO: 在此处插入 return 语句}
+	
 }
