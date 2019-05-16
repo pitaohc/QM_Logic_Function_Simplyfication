@@ -1,4 +1,5 @@
 #pragma once
+
 /*
 step：
 	1、将最小项转化成二进制编码表
@@ -13,9 +14,8 @@ step：
 #ifndef _QMLOG_
 
 #define _QMLOG_
-#include<iostream>
-#include<vector>
-#include<algorithm>
+#include"myhead.h"
+#include"QM_CONSOLIDATION.h"
 #define FALSE 0
 #define TRUE 1
 #define X 2
@@ -76,7 +76,7 @@ public:
 	
 	//操作符重载函数
 	void operator =(QMLOG& copy);//复制构造函数
-	friend ostream& operator <<(ostream& out,QMLOG me);
+	friend ostream& operator <<(ostream& out,QMLOG & me);
 private:
 	//vector<int>* PMin_Item;//最小项
 	//vector<int>* PCon_Min_Item;//结果
@@ -90,7 +90,7 @@ private:
 	void SelectLessItem();		//列表法选择最少乘积项
 	void AddRemainItem();		//增加剩余项
 	//私有成员变量
-	int size;
+	int size;									//最小项数量
 	vector<int> MinItem;						//最小项
 	vector<int> ConMinItem;						//结果
 	vector<QM_CONSOLIDATION> ConsolidationTable;//合并表
