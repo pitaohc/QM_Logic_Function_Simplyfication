@@ -21,14 +21,32 @@
     <ClCompile Include="QMLOG.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="QM_CONSOLIDATION.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="QMLOG.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="myhead.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="QM_CONSOLIDATION.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="QM更新文档.md">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="QM_LOG说明文档.md">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="QM合并项说明文档.md">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="更新文档.md">
       <Filter>资源文件</Filter>
     </None>
   </ItemGroup>

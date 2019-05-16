@@ -1,5 +1,5 @@
 #include"QMLOG.h"
-#include<iostream>
+#include"myhead.h"
 int main()
 {
 	//QM_CONSOLIDATION qm1(15,4);
