@@ -76,22 +76,39 @@ operator <<(ostream& out,QMLOG me)
 
 private:
 
-InitConList()
+1、InitConList()
 
 初始化合并表 ,得出位数和设置consolidation_table
-Consolidation()
+2、Consolidation()
 
 合并式子,合并consolidation_table
-InitProductTable()
+3、InitProductTable()
 
 初始化乘积表,Product_Table
-SelectLessItem()
+4、SelectLessItem()
 
 列表法选择最少乘积项
-AddRemainItem()
+5、AddRemainItem()
 
 增加剩余项
 
 
 
+6、成员变量
 
+int size
+
+最小项个数
+
+vector<int> MinItem
+
+最小项
+vector<int> ConMinItem
+
+结果
+vector<QM_CONSOLIDATION>
+
+合并表
+vector<QM_CONSOLIDATION>
+
+乘积表

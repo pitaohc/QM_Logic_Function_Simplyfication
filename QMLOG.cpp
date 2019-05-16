@@ -1,21 +1,20 @@
 #include "QMLOG.h"
 
 QMLOG::QMLOG(int arr[], int n)
-	:size(n)
 {
-	MinItem.assign(arr, arr + n);
-	sort(MinItem.begin(), MinItem.end());
+	vector<int> temp(arr, arr + n);
+	PutItem(temp);
 }
 
-QMLOG::QMLOG( vector<int> & vect)
-	:MinItem(vect)
+QMLOG::QMLOG(vector<int> & vect)
 {
-	sort(MinItem.begin(), MinItem.end());
+	PutItem(vect);
 }
 
 QMLOG::QMLOG(QMLOG & copy)
 {
 	size = copy.Size();
+	complete = copy.Complete();
 	MinItem = copy.PopMinItem();
 	ConMinItem = copy.GetSinplest();
 	ConsolidationTable = copy.PopConsolidationTable();
@@ -37,12 +36,31 @@ void QMLOG::operator=(QMLOG& copy)
 
 void QMLOG::InitConList()
 {
-
+	int max = *(MinItem.end() - 1);
+	int finger = 1;
+	
+	while (max>0)
+	{
+		max /= 2;
+		finger++;
+	}
+	QMLOG::finger = finger;
+	for (int i = 0; i < size; i++)
+	{
+		ConsolidationTable.push_back({ MinItem[i], finger });
+	}
 }
 
 void QMLOG::Consolidation()
 {
-
+	auto temp_con = ConsolidationTable;
+	for (int i = 0; i < size; i++)
+	{
+		for (int j = i+1; j < size; j++)
+		{
+			ConsolidationTable[i] += ConsolidationTable[j];
+		}
+	}
 }
 
 void QMLOG::InitProductTable()
@@ -65,23 +83,26 @@ QMLOG& QMLOG::PutItem(vector<int>& vect)
 {
 	size = vect.size();
 	MinItem = vect;
+	sort(MinItem.begin(), MinItem.end());
+	complete = false;
 	return *this;
 }
 
 vector<int>& QMLOG::GetSinplest()
 {
-	InitConList();
-	Consolidation();
-	InitProductTable();
-	SelectLessItem();
-	AddRemainItem();
+	if (!complete)
+	{
+		InitConList();
+		Consolidation();
+		InitProductTable();
+		SelectLessItem();
+		AddRemainItem();
+		complete = true;
+	}
 	return ConMinItem;
 }
 
-
-
-
-ostream& operator<<(ostream& out, QMLOG me)
+ostream& operator<<(ostream& out, QMLOG& me)
 {
 	int size = me.Size();
 	vector<int> MinItem = me.PopMinItem();			//最小项
@@ -92,7 +113,7 @@ ostream& operator<<(ostream& out, QMLOG me)
 	out << "长度: " << size << endl;
 	out << "待化简表达式" << endl;
 	//for_each(MinItem.begin(), MinItem.end(), [&](int x) {out <<'m'<< x << " + "; });
-	out<<'m' << MinItem[0];
+	out << 'm' << MinItem[0];
 	for (int i = 1; i < MinItem.size(); i++)
 	{
 		out << " + m" << MinItem[i];
@@ -126,5 +147,5 @@ ostream& operator<<(ostream& out, QMLOG me)
 			}
 		});
 	return out;
-	// TODO: 在此处插入 return 语句}
 }
+
