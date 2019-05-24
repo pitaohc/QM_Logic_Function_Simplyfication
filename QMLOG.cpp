@@ -1,16 +1,19 @@
 #include "QMLOG.h"
 
+//数组构造函数
 QMLOG::QMLOG(int arr[], int n)
 {
 	vector<int> temp(arr, arr + n);
 	PutItem(temp);
 }
 
+//向量构造函数
 QMLOG::QMLOG(vector<int> & vect)
 {
 	PutItem(vect);
 }
 
+//拷贝构造函数
 QMLOG::QMLOG(QMLOG & copy)
 {
 	size = copy.Size();
@@ -21,19 +24,22 @@ QMLOG::QMLOG(QMLOG & copy)
 	ProductTable = copy.PopProductTable();
 }
 
+//默认构造函数
 QMLOG::QMLOG() :size(0) {}
-
+//析构函数
 QMLOG::~QMLOG() {}
 
-//操作符<<重载
+//操作符=重载
 void QMLOG::operator=(QMLOG& copy)
 {
 	size = copy.Size();
 	MinItem = copy.PopMinItem();
 	ConsolidationTable = copy.PopConsolidationTable();
 	ProductTable = copy.PopProductTable();
+
 }
 
+//初始化合成表
 void QMLOG::InitConList()
 {
 	int max = *(MinItem.end() - 1);
@@ -50,7 +56,7 @@ void QMLOG::InitConList()
 		ConsolidationTable.push_back({ MinItem[i], finger });
 	}
 }
-
+//合并函数
 void QMLOG::Consolidation()
 {
 	auto temp_con = ConsolidationTable;
@@ -62,34 +68,37 @@ void QMLOG::Consolidation()
 		}
 	}
 }
-
+//初始化乘积表
 void QMLOG::InitProductTable()
 {
 
 }
-
+//选择最小项
 void QMLOG::SelectLessItem()
 {
 
 }
-
+//增加剩余项
 void QMLOG::AddRemainItem()
 {
 
 }
 
-//
+//设置最小项向量
 QMLOG& QMLOG::PutItem(vector<int>& vect)
 {
+	//设置个数
 	size = vect.size();
+	//设置向量并排序
 	MinItem = vect;
 	sort(MinItem.begin(), MinItem.end());
 	complete = false;
 	return *this;
 }
-
+//取得结果
 vector<int>& QMLOG::GetSinplest()
 {
+	//如果已经有结果，就直接返回，否则计算
 	if (!complete)
 	{
 		InitConList();
@@ -101,7 +110,7 @@ vector<int>& QMLOG::GetSinplest()
 	}
 	return ConMinItem;
 }
-
+//输出函数
 ostream& operator<<(ostream& out, QMLOG& me)
 {
 	int size = me.Size();

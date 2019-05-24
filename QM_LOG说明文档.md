@@ -20,25 +20,17 @@ QMLOG()
 
 默认构造
 
-
-
 2、~QMLOG()
 
 析构函数，暂无功能
-
-
 
 3、PutItem(vector<int>& Min_Item)
 
 放入最小项数组
 
-
-
 4、GetSinplest()
 
 处理最小项数组得出最简式
-
-
 
 5、变量输出函数
 
@@ -60,8 +52,6 @@ PopProductTable()
 
 输出乘积表，const vector<QM_CONSOLIDATION>&
 
-
-
 6、操作符重载函数
 
 operator =(QMLOG& copy)
@@ -71,8 +61,6 @@ operator =(QMLOG& copy)
 operator <<(ostream& out,QMLOG me)
 
 打印输出函数
-
-
 
 private:
 
@@ -91,8 +79,6 @@ private:
 5、AddRemainItem()
 
 增加剩余项
-
-
 
 6、成员变量
 
