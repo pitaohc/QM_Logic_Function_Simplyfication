@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="资源文件\课本">
+      <UniqueIdentifier>{67aed67c-abf7-4fc5-8ee9-cd6c3d304213}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -49,5 +52,16 @@
     <None Include="更新文档.md">
       <Filter>资源文件</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="课本\3.jpg">
+      <Filter>资源文件\课本</Filter>
+    </Image>
+    <Image Include="课本\1.jpg">
+      <Filter>资源文件\课本</Filter>
+    </Image>
+    <Image Include="课本\2.jpg">
+      <Filter>资源文件\课本</Filter>
+    </Image>
   </ItemGroup>
 </Project>

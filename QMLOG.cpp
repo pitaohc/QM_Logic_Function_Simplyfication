@@ -128,33 +128,48 @@ ostream& operator<<(ostream& out, QMLOG& me)
 		out << " + m" << MinItem[i];
 	}
 	out << endl;
-	out << "合成表" << endl;
-	out << "P | A B C D E | NUM" << endl;
-	out << "-------------------" << endl;
-	for_each(ConsolidationTable.begin(), ConsolidationTable.end(), [&](QM_CONSOLIDATION x)
-		{
-			out << x << endl;
-		});
-	out << "乘积表" << endl;
-	out << "P&M";
-	for_each(MinItem.begin(), MinItem.end(), [&](int x) {out << ' ' << x; });
-	out << endl;
-	for_each(ConsolidationTable.begin(), ConsolidationTable.end(), [&](QM_CONSOLIDATION x)
-		{
-			out << x.PopIndex();
-			for (int i = 0; i < MinItem.size(); i++)
+
+	if (ConsolidationTable.empty() == true)
+	{
+		cout << "无合成表" << endl;
+	}
+	else
+	{ 
+		out << "合成表" << endl;
+		out << "P | A B C D E | NUM" << endl;
+		out << "-------------------" << endl;
+		for_each(ConsolidationTable.begin(), ConsolidationTable.end(), [&](QM_CONSOLIDATION x){
+				out << x << endl;
+			});
+	}
+
+	if (ConsolidationTable.empty() == true)
+	{
+		cout << "无乘积表" << endl;
+	}
+	else
+	{
+		out << "乘积表" << endl;
+		out << "P&M";
+		for_each(MinItem.begin(), MinItem.end(), [&](int x) {out << ' ' << x; });
+		out << endl;
+		for_each(ProductTable.begin(), ProductTable.end(), [&](QM_CONSOLIDATION x)
 			{
-				vector<int> num = ConsolidationTable[i].PopNum();
-				int len = num.size();
-				for (int j = 0; j < len; j++)
+				out << x.PopIndex();
+				for (int i = 0; i < MinItem.size(); i++)
 				{
-					if (MinItem[i] == num[j])
-						cout << " 1 ";
-					else
-						cout << "   ";
+					vector<int> num = ProductTable[i].PopNum();
+					int len = num.size();
+					for (int j = 0; j < len; j++)
+					{
+						if (MinItem[i] == num[j])
+							cout << " 1 ";
+						else
+							cout << "   ";
+					}
 				}
-			}
-		});
+			});
+	}
 	return out;
 }
 

@@ -138,6 +138,11 @@
     <None Include="QM更新文档.md" />
     <None Include="更新文档.md" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="课本\1.jpg" />
+    <Image Include="课本\2.jpg" />
+    <Image Include="课本\3.jpg" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
